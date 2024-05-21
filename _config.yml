@@ -1,0 +1,18 @@
+title: Gabe's Blog
+tagline: Blog, served raw.
+# description: Blog, served raw.
+
+author:
+  name: Gabe Livengood
+
+url: https://ggliv.com
+baseurl: /blog
+
+permalink: /:year/:title
+
+header_pages: []
+
+remote_theme: jekyll/minima
+minima:
+  skin: auto
+  date_format: "%d %B %Y"
