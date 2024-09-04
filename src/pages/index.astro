@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { formatDate } from "../util.ts";
+
+const blogCollection = await getCollection("blog");
+---
+
+<BaseLayout title="Index">
+  <p class="mb-[1rem]"
+    >This page is very much a work in progress. It may or may not grow into what
+    you would expect of a typical blog. For now, I’m writing for myself. Enjoy!</p
+  >
+  <ul class="list-disc list-inside">
+    {
+      blogCollection.map((post) => (
+        <li>
+          <a
+            class="text-blue-700 dark:text-blue-300"
+            href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
+          >
+            {post.data.title}
+          </a>
+          ({formatDate(post.data.date)})
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
