@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import siteConfig from "../config.ts";
 import { formatDate } from "../util.ts";
 
 const blogCollection = await getCollection("blog");
 ---
 
-<BaseLayout title="Index">
+<BaseLayout title="Index" description={siteConfig.description}>
   <p class="mb-[1rem]"
     >This page is very much a work in progress. It may or may not grow into what
     you would expect of a typical blog. For now, I’m writing for myself. Enjoy!</p
