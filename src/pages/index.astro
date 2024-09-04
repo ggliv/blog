@@ -13,17 +13,19 @@ const blogCollection = await getCollection("blog");
   >
   <ul class="list-disc list-inside">
     {
-      blogCollection.map((post) => (
-        <li>
-          <a
-            class="text-blue-700 dark:text-blue-300"
-            href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
-          >
-            {post.data.title}
-          </a>
-          ({formatDate(post.data.date)})
-        </li>
-      ))
+      blogCollection
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => (
+          <li>
+            <a
+              class="text-blue-700 dark:text-blue-300"
+              href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
+            >
+              {post.data.title}
+            </a>
+            ({formatDate(post.data.date)})
+          </li>
+        ))
     }
   </ul>
 </BaseLayout>
