@@ -1,32 +1,46 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import siteConfig from "../config.ts";
-import { formatDate } from "../util.ts";
+import siteConfig from "@/config.ts";
+import { formatDate, tags } from "@/util.ts";
 
 const blogCollection = await getCollection("blog");
 ---
 
 <BaseLayout title="Index" description={siteConfig.description}>
-  <p class="mb-[1rem]"
-    >This page is very much a work in progress. It may or may not grow into what
-    you would expect of a typical blog. For now, I’m writing for myself. Enjoy!</p
-  >
-  <ul class="list-disc list-inside">
+  <div class="space-y-[1rem]">
+    <p
+      >This page is very much a work in progress. It may or may not grow into
+      what you would expect of a typical blog. For now, I’m writing for myself.
+      Enjoy!</p
+    >
     {
-      blogCollection
-        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-        .map((post) => (
-          <li>
-            <a
-              class="text-blue-700 dark:text-blue-300"
-              href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
-            >
-              {post.data.title}
-            </a>
-            ({formatDate(post.data.date)})
-          </li>
-        ))
+      tags.length > 0 && (
+        <p>
+          Check out
+          <a class="link" href={`${import.meta.env.BASE_URL}/tags`}>
+            the tags page
+          </a>
+          if you're looking for a specific topic.
+        </p>
+      )
     }
-  </ul>
+    <ul class="list-disc list-outside ml-[1rem]">
+      {
+        blogCollection
+          .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+          .map((post) => (
+            <li>
+              <a
+                class="link"
+                href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
+              >
+                {post.data.title}
+              </a>
+              ({formatDate(post.data.date)})
+            </li>
+          ))
+      }
+    </ul>
+  </div>
 </BaseLayout>

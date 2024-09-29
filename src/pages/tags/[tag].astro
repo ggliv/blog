@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { tags, postsWithTag, formatDate } from "@/util.ts";
+
+export const getStaticPaths = async () =>
+  tags.map((tag) => ({
+    params: { tag: tag },
+  }));
+
+const { tag } = Astro.params;
+---
+
+<BaseLayout title={`Posts tagged with #${tag}`}>
+  <ul class="list-disc list-outside ml-[1rem]">
+    {
+      postsWithTag(tag)
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => (
+          <li>
+            <a
+              class="link"
+              href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}`}
+            >
+              {post.data.title}
+            </a>
+            ({formatDate(post.data.date)})
+          </li>
+        ))
+    }
+  </ul>
+</BaseLayout>
