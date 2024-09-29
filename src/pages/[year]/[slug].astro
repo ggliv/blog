@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Prose from "../../components/Prose.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Prose from "@/components/Prose.astro";
 import { getCollection } from "astro:content";
-import { formatDate } from "../../util.ts";
+import { formatDate } from "@/util.ts";
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((post) => ({
