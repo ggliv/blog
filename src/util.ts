@@ -1,5 +1,8 @@
 import { getCollection } from "astro:content";
-const posts = await getCollection("blog");
+
+export const posts = await getCollection("blog", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true,
+);
 
 export const formatDate = (date: Date) => {
   const month = new Intl.DateTimeFormat("en", {

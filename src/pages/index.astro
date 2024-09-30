@@ -1,10 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
 import siteConfig from "@/config.ts";
-import { formatDate, tags } from "@/util.ts";
-
-const blogCollection = await getCollection("blog");
+import { posts, formatDate, tags } from "@/util.ts";
 ---
 
 <BaseLayout title="Index" description={siteConfig.description}>
@@ -27,7 +24,7 @@ const blogCollection = await getCollection("blog");
     }
     <ul class="list-disc list-outside ml-[1rem]">
       {
-        blogCollection
+        posts
           .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
           .map((post) => (
             <li>
