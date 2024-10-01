@@ -10,4 +10,5 @@ export default defineConfig({
   site: "https://ggliv.com",
   base: "/blog",
   output: "static",
+  trailingSlash: "always",
 });
