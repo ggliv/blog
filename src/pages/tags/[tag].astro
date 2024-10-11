@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { tags, postsWithTag, formatDate } from "@/util.ts";
+import { tags, postsWithTag, formatDate, slugify } from "@/util.ts";
 
 export const getStaticPaths = async () =>
   tags.map((tag) => ({
@@ -17,10 +17,7 @@ const { tag } = Astro.params;
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
         .map((post) => (
           <li>
-            <a
-              class="link"
-              href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}/`}
-            >
+            <a class="link" href={slugify(post.data.date, post.slug)}>
               {post.data.title}
             </a>
             ({formatDate(post.data.date)})

@@ -1,18 +1,18 @@
 import type { APIContext } from "astro";
 import rss from "@astrojs/rss";
 import siteConfig from "@/config.ts";
-import { posts } from "@/util.ts";
+import { posts, slugify } from "@/util.ts";
 
-export function GET(context: APIContext) {
+export function GET(_: APIContext) {
   return rss({
     title: siteConfig.title,
     description: siteConfig.description,
-    site: `${context.site!}/${import.meta.env.BASE_URL}`,
+    site: siteConfig.blogRoot,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description,
-      link: `${import.meta.env.BASE_URL}/${post.slug}`,
+      link: slugify(post.data.date, post.slug),
     })),
   });
 }

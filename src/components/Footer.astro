@@ -1,5 +1,5 @@
 ---
-
+import siteConfig from "@/config.ts";
 ---
 
 <div
@@ -15,9 +15,7 @@
   <div>
     <a class="md:inline-block" href="/">Home</a>
     &middot;
-    <a class="md:inline-block" href={import.meta.env.BASE_URL + "/feed.xml"}
-      >RSS</a
-    >
+    <a class="md:inline-block" href={siteConfig.blogRoot + "/feed.xml"}>RSS</a>
     &middot;
     <a class="md:inline-block" href="#">Top</a>
   </div>

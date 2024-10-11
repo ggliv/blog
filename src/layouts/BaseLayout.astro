@@ -29,12 +29,12 @@ import "@/global.css";
       rel="alternate"
       type="application/rss+xml"
       title={siteConfig.title}
-      href={import.meta.env.BASE_URL + "/feed.xml"}
+      href={siteConfig.blogRoot + "/feed.xml"}
     />
     <style>
       @font-face {
         font-family: Fredoka;
-        /* NOTE vite is stupid and falls over (only on build) if you try to use
+        /* WARN vite is stupid and falls over (only on build) if you try to use
          * interleaved js in css, so this url doesn't use BASE_URL like it
          * should. if the base ever changes, this will have to change too. */
         src: url("/blog/Fredoka-Variable.ttf");

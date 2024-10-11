@@ -1,5 +1,5 @@
 ---
-
+import siteConfig from "@/config.ts";
 ---
 
 <div class="h-[1rem] w-full bg-brand dark:bg-brand-dark"></div>
@@ -19,5 +19,5 @@
     "brightness-125",
   ]}
 >
-  <a href={import.meta.env.BASE_URL}>Gabe's Blog</a>
+  <a href={siteConfig.blogRoot + "/"}>Gabe's Blog</a>
 </h1>

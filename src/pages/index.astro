@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import siteConfig from "@/config.ts";
-import { posts, formatDate, tags } from "@/util.ts";
+import { posts, formatDate, tags, slugify } from "@/util.ts";
 ---
 
 <BaseLayout title="Index" description={siteConfig.description}>
@@ -15,7 +15,7 @@ import { posts, formatDate, tags } from "@/util.ts";
       tags.length > 0 && (
         <p>
           Check out
-          <a class="link" href={`${import.meta.env.BASE_URL}/tags/`}>
+          <a class="link" href={`${siteConfig.blogRoot}/tags/`}>
             the tags page
           </a>
           if you're looking for a specific topic.
@@ -28,10 +28,7 @@ import { posts, formatDate, tags } from "@/util.ts";
           .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
           .map((post) => (
             <li>
-              <a
-                class="link"
-                href={`${import.meta.env.BASE_URL}/${post.data.date.getUTCFullYear()}/${post.slug}/`}
-              >
+              <a class="link" href={slugify(post.data.date, post.slug)}>
                 {post.data.title}
               </a>
               ({formatDate(post.data.date)})

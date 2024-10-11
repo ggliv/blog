@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { tags, postsWithTag } from "@/util.ts";
+import siteConfig from "@/config.ts";
 ---
 
 <BaseLayout title="Tags">
@@ -10,7 +11,7 @@ import { tags, postsWithTag } from "@/util.ts";
         .sort((a, b) => postsWithTag(b).length - postsWithTag(a).length)
         .map((t) => (
           <li>
-            <a class="link" href={`${import.meta.env.BASE_URL}/tags/${t}/`}>
+            <a class="link" href={`${siteConfig.blogRoot}/tags/${t}`}>
               #{t}
             </a>
             {(() => {

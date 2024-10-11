@@ -1,9 +1,9 @@
 import { getCollection } from "astro:content";
+import siteConfig from "@/config.ts";
 
 export const posts = await getCollection("blog", ({ data }) =>
   import.meta.env.PROD ? !data.draft : true,
 );
-
 export const formatDate = (date: Date) => {
   const month = new Intl.DateTimeFormat("en", {
     timeZone: "UTC",
@@ -28,3 +28,6 @@ export const tags: string[] = Array.from(
 
 export const postsWithTag = (tag: string) =>
   posts.filter((p) => p.data.tags?.includes(tag));
+
+export const slugify = (date: Date, slug: string) =>
+  `${siteConfig.blogRoot}/${date.getUTCFullYear()}/${slug}`;
