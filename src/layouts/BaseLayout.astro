@@ -24,7 +24,14 @@ import "@/global.css";
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:image" content="https://github.com/ggliv.png" />
-    {description && <meta property="og:description" content={description} />}
+    {
+      description && (
+        <>
+          <meta property="og:description" content={description} />
+          <meta name="description" content={description} />
+        </>
+      )
+    }
     <link
       rel="alternate"
       type="application/rss+xml"
