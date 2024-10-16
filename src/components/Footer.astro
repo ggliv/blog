@@ -20,8 +20,14 @@ import siteConfig from "@/config.ts";
     <a class="md:inline-block" href="#">Top</a>
   </div>
   <div>
-    <p class="md:inline-block">
-      &copy; 2023-{new Date().getUTCFullYear()} Gabe Livengood
+    <p class="group md:inline-block">
+      <span
+        class:list={[
+          "inline-block",
+          "motion-safe:group-hover:[transform:rotateY(180deg)]",
+          "transition-transform",
+        ]}>&copy;</span
+      > 2023-{new Date().getUTCFullYear()} Gabe Livengood
     </p>
     <span class="hidden md:inline-block">&middot;</span>
     <p class="md:inline-block">
